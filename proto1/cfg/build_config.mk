@@ -28,11 +28,15 @@
 ###########################################################################
 
 ## CPCTELERA MAIN PATH
-##   Sets CPCTelera main path for accessing tools and configuration. If you
-##   change folder structure, change CPCT_PATH value for its absolute path.
+##   Sets CPCTelera main path for accessing tools and configuration. This 
+##   variable must point to the folder where source and tools are contained.
+##   Setup creates and environment variable that will be generally used.
+##   However, when environment variable is not available, this variable 
+##   should have the correct value for the project to compile.
+##   If you change folder structure, CPCT_PATH should reflect this change.
+##   This variable should always have the absolute path value.
 ##
-THIS_FILE_PATH := $(dir $(abspath $(lastword $(MAKEFILE_LIST))))
-CPCT_PATH      := $(THIS_FILE_PATH)../../../../cpctelera/
+#>> Uses environment variable $(CPCT_PATH)
 
 ####
 ## SECTION 1: Project configuration 
@@ -55,7 +59,7 @@ Z80CODELOC := 0x4000
 ## OBJDIR      = Object files generated on compilation
 ##
 SRCDIR      := src
-DSKFILESDIR := dsk
+DSKFILESDIR := dsk_files
 OBJDIR      := obj
 
 ##
@@ -86,7 +90,6 @@ IHXFILE := $(OBJDIR)/$(PROJNAME).ihx
 BINFILE := $(OBJDIR)/$(PROJNAME).bin
 CDT     := $(PROJNAME).cdt
 DSK     := $(PROJNAME).dsk
-SNA     := $(PROJNAME).sna
 DSKINC  := $(OBJDIR)/$(DSK).$(DSKINC_EXT)
 
 ##
@@ -94,10 +97,9 @@ DSKINC  := $(OBJDIR)/$(DSK).$(DSKINC_EXT)
 ##
 ##  $(CDT):    Generates the CDT file with main binary
 ##  $(DSK):    Generates the DSK file with main binary
-##  $(SNA):    Generates the SNA file with main binary
 ##  $(DSKINC): Includes all files from DSKFILESDIR into DSK as binaries 
 ##
-TARGET := $(CDT) $(DSK) $(DSKINC) $(SNA)
+TARGET := $(CDT) $(DSK) $(DSKINC)
 
 ##
 ## OBJS2CLEAN: Additional objects to be removed when running "make clean"
@@ -119,7 +121,7 @@ include $(CPCT_PATH)/cfg/global_paths.mk
 ##   Flags used to configure the compilation of your code. They are usually 
 ##   fine for most of the projects, but you may change them for special uses.
 #####
-Z80CCFLAGS    :=
+Z80CCFLAGS    := --opt-code-speed --fomit-frame-pointer --max-allocs-per-node 200000 -DCPC_PLATFORM=1
 Z80ASMFLAGS   := -l -o -s
 Z80CCINCLUDE  := -I$(CPCT_SRC) -I$(SRCDIR)
 Z80CCLINKARGS := -mz80 --no-std-crt0 -Wl-u \
@@ -135,13 +137,10 @@ Z80CCLINKARGS := -mz80 --no-std-crt0 -Wl-u \
 ####
 include $(CPCT_PATH)/cfg/global_functions.mk
 
-# Convert images, tilemaps and music
+# Convert images and tilemaps
 include cfg/image_conversion.mk
 include cfg/tilemap_conversion.mk
 include cfg/music_conversion.mk
-# Create compressed packs and manage CDT
-include cfg/compression.mk
-include cfg/cdt_manager.mk
 
 # Calculate all subdirectories
 SUBDIRS       := $(filter-out ., $(shell find $(SRCDIR) -type d -print))
@@ -154,7 +153,6 @@ CFILES         := $(filter-out $(IMGCFILES), $(CFILES))
 ASMFILES       := $(foreach DIR, $(SUBDIRS), $(wildcard $(DIR)/*.$(ASM_EXT)))
 ASMFILES       := $(filter-out $(IMGASMFILES), $(ASMFILES))
 BIN2CFILES     := $(foreach DIR, $(SUBDIRS), $(wildcard $(DIR)/*.$(BIN_EXT)))
-BIN2CFILES     := $(filter-out $(IMGBINFILES), $(BIN2CFILES))
 DSKINCSRCFILES := $(wildcard $(DSKFILESDIR)/*)
 
 # Calculate all object files
@@ -167,4 +165,3 @@ ASM_OBJFILES   := $(patsubst $(SRCDIR)%, $(OBJDIR)%, $(patsubst %.$(ASM_EXT), %.
 DSKINCOBJFILES := $(foreach FILE, $(DSKINCSRCFILES), $(patsubst $(DSKFILESDIR)/%, $(OBJDSKINCSDIR)/%, $(FILE)).$(DSKINC_EXT))
 OBJFILES       := $(C_OBJFILES) $(ASM_OBJFILES)
 GENOBJFILES    := $(GENC_OBJFILES) $(GENASM_OBJFILES)
-NONLINKGENFILES:= $(IMGBINFILES)
