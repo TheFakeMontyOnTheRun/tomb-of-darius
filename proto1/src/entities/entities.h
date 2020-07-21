@@ -16,17 +16,7 @@
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //------------------------------------------------------------------------------
 
-#ifndef _ENTITIES_H_
-#define _ENTITIES_H_
-
 #include <types.h>
-#include "../anim/animation.h"
-
-// Scale value for fixed point maths calculations using integers
-#define SCALE   256  // 2^8
-
-// Expected Frames per Second drawing Ratio   
-#define FPS      50
 
 //////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////
@@ -37,108 +27,73 @@
 //////////////////////////////////////////////////////////////////////////
 
 //
+// Possible statuses of an animation
+//
+typedef enum {
+   as_play,    // Playing till the last frame
+   as_cycle,   // Playing continuosly
+   as_pause,   // Paused, waiting to continue
+   as_end      // Animation has ended
+} TAnimStatus;
+
+//
+// Description of an animation frame
+//
+typedef struct {
+   u8* sprite;        // Sprite associated to this frame
+   u8  width, height; // Sprite dimensions in bytes
+   i8  mx, my;        // Pixel movements, in bytes, to be executed at the start of this Frame
+   i8  ex, ew, eh;    // Pixel bytes to erase (ew, eh=width and height of box to be eliminated, ex=X displacement, in bytes, from the top-left corner)
+   u8  time;          // Time that the sprite should be shown
+} TAnimFrame;
+
+//
+// Describes an Animation as a secuence of sprites, controlled by time
+//   Time is measured in main loop cycles
+//
+typedef struct {
+   TAnimFrame**  frames;    // Vector containing all the frames of the animation
+   u8            frame_id;  // Index of the current frame
+   u8            time;      // Remaining time for this frame
+   TAnimStatus   status;    // Status of the animation
+} TAnimation;
+
+//
 // Possible statuses of an entity
 //
 typedef enum {
-   es_static = 0, // Entity that does not move
-   es_walk,       // Entity walking
-   es_jump,       // Entity jumping
-   es_moveFloor,  // Entity is moving a floor
-   es_NUMSTATUSES // Total amount of statuses available
-} TCharacterStatus;
+   es_dead,       // Entity dead
+   es_stop,       // Entity stopped, not moving
+   es_walk_right, // Entity walking
+   es_walk_left,  // Entity walking
+   es_fist,       // Entity fisting
+   es_kick,       // Entity kicking
+   es_win,        // Entity Winning
+   es_hit         // Entity is being hit
+} TEntityStatus;
 
 //
-// Entities can be heading both sides
-//
-typedef enum { s_left = 0, s_right, s_NUMSIDES } TCharacterSide;
-
-//
-// Describes physical behaviour for an object
-//
-struct Entity;
-typedef struct {
-   u16   x,  y;    // X, Y coordinates of entity in a subpixel world (in pixels*SCALE)
-   i16  vx, vy;    // Velocity vector controlling entity movement (In pixels*SCALE)
-   u16  bounce;    // Bounce coefficient (In pixels*SCALE. < SCALE absorves energy, > SCALE gives energy)
-   struct Entity* floor; // Entity that acts as floor
-} TPhysics;
-
-//
-// Information for solid objects that occupy a rectangular space in the screen
+// Describes a game entity (typically, a character)
 //
 typedef struct {
-   u8   w, h;   // Width and height in bytes
-   u8 colour;   // Colour pattern use for drawing
-} TBlock;
-
-//
-// Describes a game entity
-//
-typedef struct Entity {
-   // Entities have an animation or a solid rectangular block 
-   union {
-      TAnimation  anim;    // Animation currently associated with this entity
-      TBlock      block;   // Definition of a rectangular block in the screen
-   } graph;
-
-   u8        *pscreen;  // Pointer to Screen Video memory location where entity will be drawn
-   u8       *npscreen;  // Pointer the next Screen Video memory location where entity will be drawn
-   u8           x,  y;  // X, Y coordinates of entity in the screen (in bytes)
-   u8          nx, ny;  // Next X, Y coordinates of entity in the screen (in bytes)
-   u8          pw, ph;  // Previous Width and height of the entity (depending on animation). Used to erase it
-   TPhysics      phys;  // Values for entities that have Physical components
-
-   u8            draw;  // Flag to be set when the entity needs to be drawn again
-
-   // Used to change animation on next timestep
-   TAnimFrame  **nAnim; // Pointer to next animation frames (null when no next animation)
-   TAnimStatus nStatus; // Next animation status
+   TAnimation    *anim;     // Animation currently associated with this entity
+   u8            *videopos; // Video memory location where entity will be drawn
+   u8            x, y;      // X, Y coordinates of entity in the screen
+   TEntityStatus status;    // Present status of the entity
 } TEntity;
 
-//
-// Describes a game character (the main character, for instance)
-//
-typedef struct Character {
-   TEntity           entity;  // Entity model for this character
-   TCharacterStatus  status;  // Present status of the character
-   TCharacterSide    side;    // Side the character is facing
-} TCharacter;
-
-//
-// Information about a collision rectangle 
-//
-typedef struct {
-   u8    x, y;    // Screen coordinates of the top-left square of the collision
-   u8    w, h;    // Width and height in bytes
-} TCollision;
-
 //////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////
 //////
-//////  PUBLIC UTILITY FUNCTIONS
+//////  UTILITY FUNCTIONS
 //////
 //////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////
 
-    void initializeEntities();
-    void performAction(TCharacter *c, TCharacterStatus move, TCharacterSide side);
-      u8 updateCharacter(TCharacter *c);
-    void scrollWorld();
-     u16 getScore();
-    void drawAll();
-TCharacter* getCharacter();
-
-//////////////////////////////////////////////////////////////////////////
-//////////////////////////////////////////////////////////////////////////
-//////
-//////  UTILITY GLOBALS
-//////
-//////////////////////////////////////////////////////////////////////////
-//////////////////////////////////////////////////////////////////////////
-// Size of the Screen and base pointer (in pixels)
-//
-extern const u8  g_SCR_WIDTH;  // Screen width in bytes (80 bytes = 160 pixels)
-extern const u8  g_SCR_HEIGHT; // Screen height in bytes
-extern u8* const g_SCR_VMEM;   // Pointer to the start of default video memory screen
-
-#endif
+    u8 * getScreenPointer(u8 y);
+TEntity* getPersea();
+    void updateEntity(TEntity *ent);
+    void setAnimation(TEntity *ent, TEntityStatus newstatus);
+      i8 moveEntityX (TEntity* ent, i8 mx);
+      i8 moveEntityY (TEntity* ent, i8 my);
+    void drawEntity  (TEntity* ent);

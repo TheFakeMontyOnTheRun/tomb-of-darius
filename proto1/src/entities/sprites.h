@@ -17,39 +17,23 @@
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //------------------------------------------------------------------------------
 
-#ifndef _SPRITES_H_
-#define _SPRITES_H_
-
 #include <types.h>
-#include "credits.h"    // File generated from credits.png. See Makefile and build_config.mk
 
 //////////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////
 ///////////
-/////////// PALETTE AND SPRITE DECLARATIONS (Defined in sprites.c)
+/////////// PALETTE AND SPRITE DECLARATIONS (Defined in .c)
 ///////////
 //////////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////
 
-// Palette
-extern const u8 G_palette[16];
-
-// Main Character Sprites
-extern const u8 G_EMRright[4*16];
-extern const u8 G_EMRright2[2*16];
-extern const u8 G_EMRright3[4*16];
-extern const u8 G_EMRleft[4*16];
-extern const u8 G_EMRleft2[2*16];
-extern const u8 G_EMRleft3[4*16];
-extern const u8 G_EMRjumpright1[4*8];
-extern const u8 G_EMRjumpright2[4*8];
-extern const u8 G_EMRjumpright3[4*8];
-extern const u8 G_EMRjumpright4[4*8];
-extern const u8 G_EMRjumpleft1[4*8];
-extern const u8 G_EMRjumpleft2[4*8];
-extern const u8 G_EMRjumpleft3[4*8];
-extern const u8 G_EMRjumpleft4[4*8];
-extern const u8 G_EMRhitright[4*16];
-extern const u8 G_EMRhitleft[4*16];
-
-#endif
+extern const u8 gc_palette[16];
+extern const u8 gc_LogoFremos[55*20];
+extern const u8 gc_PerseaWalk13[8*24];
+extern const u8 gc_PerseaWalk2[8*24];
+extern const u8 gc_PerseaWalk4[8*24];
+extern const u8 gc_PerseaFist[9*24];
+extern const u8 gc_PerseaKick[9*24];
+extern const u8 gc_PerseaHit[8*24];
+extern const u8 gc_PerseaWins[8*24];
+extern const u8 gc_PerseaKO[12*8];
