@@ -1,0 +1,32 @@
+
+IF !DEFINED_startup
+	defc	DEFINED_startup = 1
+	defc startup = 3
+	IFNDEF startup
+	ENDIF
+ENDIF
+
+
+IF !DEFINED_USING_amalloc
+	defc	DEFINED_USING_amalloc = 1
+	defc USING_amalloc = 0
+	IFNDEF USING_amalloc
+	ENDIF
+ENDIF
+
+
+IF !DEFINED_USING_amalloc
+	defc	DEFINED_USING_amalloc = 1
+	defc USING_amalloc = 0
+	IFNDEF USING_amalloc
+	ENDIF
+ENDIF
+
+
+IF !DEFINED_graphics
+	defc	DEFINED_graphics = 1
+	defc graphics = 0
+	IFNDEF graphics
+	ENDIF
+ENDIF
+

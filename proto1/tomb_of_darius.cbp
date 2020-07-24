@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6"/>
+	<Project>
+		<Option title="tomb_of_darius"/>
+		<Option makefile_is_custom="1"/>
+		<Option compiler="gcc"/>
+		<Option virtualFolders="CMake Files\;CMake Files\cmake_sdl2\;"/>
+		<Build>
+			<Target title="all">
+				<Option working_dir="/home/monty/git/madame_y"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -f &quot;/home/monty/git/madame_y/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="/usr/bin/make -f &quot;/home/monty/git/madame_y/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -f &quot;/home/monty/git/madame_y/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -f &quot;/home/monty/git/madame_y/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="rebuild_cache">
+				<Option working_dir="/home/monty/git/madame_y"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -f &quot;/home/monty/git/madame_y/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="/usr/bin/make -f &quot;/home/monty/git/madame_y/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -f &quot;/home/monty/git/madame_y/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -f &quot;/home/monty/git/madame_y/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="tomb_of_darius">
+				<Option output="/home/monty/git/madame_y/tomb_of_darius" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/monty/git/madame_y"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/monty/git/madame_y/src"/>
+					<Add directory="/usr/include/SDL2"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -f &quot;/home/monty/git/madame_y/Makefile&quot;  VERBOSE=1 tomb_of_darius"/>
+					<CompileFile command="/usr/bin/make -f &quot;/home/monty/git/madame_y/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -f &quot;/home/monty/git/madame_y/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -f &quot;/home/monty/git/madame_y/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="tomb_of_darius/fast">
+				<Option output="/home/monty/git/madame_y/tomb_of_darius" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/monty/git/madame_y"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/monty/git/madame_y/src"/>
+					<Add directory="/usr/include/SDL2"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -f &quot;/home/monty/git/madame_y/Makefile&quot;  VERBOSE=1 tomb_of_darius/fast"/>
+					<CompileFile command="/usr/bin/make -f &quot;/home/monty/git/madame_y/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -f &quot;/home/monty/git/madame_y/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -f &quot;/home/monty/git/madame_y/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="edit_cache">
+				<Option working_dir="/home/monty/git/madame_y"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -f &quot;/home/monty/git/madame_y/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command="/usr/bin/make -f &quot;/home/monty/git/madame_y/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -f &quot;/home/monty/git/madame_y/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -f &quot;/home/monty/git/madame_y/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+		</Build>
+		<Unit filename="/home/monty/git/madame_y/src/demo.c">
+			<Option target="tomb_of_darius"/>
+		</Unit>
+		<Unit filename="/home/monty/git/madame_y/src/sdl2.c">
+			<Option target="tomb_of_darius"/>
+		</Unit>
+		<Unit filename="/home/monty/git/madame_y/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\"/>
+		</Unit>
+		<Unit filename="/home/monty/git/madame_y/cmake_sdl2/FindSDL2.cmake">
+			<Option virtualFolder="CMake Files\cmake_sdl2\"/>
+		</Unit>
+	</Project>
+</CodeBlocks_project_file>
