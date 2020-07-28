@@ -53,7 +53,7 @@ void fill(uint8_t x0, uint8_t y0, uint8_t dx, uint8_t dy, uint8_t colour) {
 
 
     pS = ((unsigned char *) base + ((y0 >> 3) * 80) + ((y0 & 7) << 11));
-    cpct_drawSolidBox(pS, colour, dx, dy);
+    cpct_drawSolidBox(pS, cpct_px2byteM0(colour, colour), dx, dy);
 }
 
 void init() {
