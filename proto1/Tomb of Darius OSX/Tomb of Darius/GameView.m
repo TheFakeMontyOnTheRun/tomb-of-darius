@@ -131,6 +131,12 @@ void initWindow(id view) {
 -(void) stopTimer {
 }
 
+void fill( uint8_t x, uint8_t y, uint8_t dx, uint8_t dy, uint8_t colour ) {
+    for ( int _y = 0; _y < dy; ++_y ) {
+        memset( &framebuffer[ (160 * (_y + y)) + x], colour, dx );
+    }
+}
+
 
 - (void)drawRect:(NSRect)rect {
 

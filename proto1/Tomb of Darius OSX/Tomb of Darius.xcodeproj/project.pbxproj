@@ -13,20 +13,21 @@
 		F1254F09247EFC26000FB68A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = F1254F08247EFC26000FB68A /* main.m */; };
 		F1254F14247EFDCC000FB68A /* GameView.m in Sources */ = {isa = PBXBuildFile; fileRef = F1254F13247EFDCC000FB68A /* GameView.m */; };
 		F1254F16247F0E04000FB68A /* demo.c in Sources */ = {isa = PBXBuildFile; fileRef = F1254F15247F0E03000FB68A /* demo.c */; };
+		F1F35D9824D5A81C0050D7EB /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F1F35D9724D5A81C0050D7EB /* Info.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		F1254EFC247EFC25000FB68A /* Madame Y.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Madame Y.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		F1254EFC247EFC25000FB68A /* Tomb of Darius.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Tomb of Darius.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F1254EFF247EFC25000FB68A /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		F1254F00247EFC25000FB68A /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		F1254F02247EFC26000FB68A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F1254F05247EFC26000FB68A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
-		F1254F07247EFC26000FB68A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F1254F08247EFC26000FB68A /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		F1254F0A247EFC26000FB68A /* Madame_Y.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Madame_Y.entitlements; sourceTree = "<group>"; };
 		F1254F12247EFDCC000FB68A /* GameView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GameView.h; sourceTree = "<group>"; };
 		F1254F13247EFDCC000FB68A /* GameView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GameView.m; sourceTree = "<group>"; };
 		F1254F15247F0E03000FB68A /* demo.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = demo.c; path = ../../src/demo.c; sourceTree = "<group>"; };
+		F1F35D9724D5A81C0050D7EB /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -43,7 +44,7 @@
 		F1254EF3247EFC25000FB68A = {
 			isa = PBXGroup;
 			children = (
-				F1254EFE247EFC25000FB68A /* Madame Y */,
+				F1254EFE247EFC25000FB68A /* Tomb of Darius */,
 				F1254EFD247EFC25000FB68A /* Products */,
 			);
 			sourceTree = "<group>";
@@ -51,34 +52,34 @@
 		F1254EFD247EFC25000FB68A /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				F1254EFC247EFC25000FB68A /* Madame Y.app */,
+				F1254EFC247EFC25000FB68A /* Tomb of Darius.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		F1254EFE247EFC25000FB68A /* Madame Y */ = {
+		F1254EFE247EFC25000FB68A /* Tomb of Darius */ = {
 			isa = PBXGroup;
 			children = (
 				F1254EFF247EFC25000FB68A /* AppDelegate.h */,
 				F1254F00247EFC25000FB68A /* AppDelegate.m */,
 				F1254F02247EFC26000FB68A /* Assets.xcassets */,
 				F1254F04247EFC26000FB68A /* MainMenu.xib */,
-				F1254F07247EFC26000FB68A /* Info.plist */,
 				F1254F08247EFC26000FB68A /* main.m */,
 				F1254F15247F0E03000FB68A /* demo.c */,
+				F1F35D9724D5A81C0050D7EB /* Info.plist */,
 				F1254F0A247EFC26000FB68A /* Madame_Y.entitlements */,
 				F1254F12247EFDCC000FB68A /* GameView.h */,
 				F1254F13247EFDCC000FB68A /* GameView.m */,
 			);
-			path = "Madame Y";
+			path = "Tomb of Darius";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		F1254EFB247EFC25000FB68A /* Madame Y */ = {
+		F1254EFB247EFC25000FB68A /* Tomb of Darius */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = F1254F0D247EFC26000FB68A /* Build configuration list for PBXNativeTarget "Madame Y" */;
+			buildConfigurationList = F1254F0D247EFC26000FB68A /* Build configuration list for PBXNativeTarget "Tomb of Darius" */;
 			buildPhases = (
 				F1254EF8247EFC25000FB68A /* Sources */,
 				F1254EF9247EFC25000FB68A /* Frameworks */,
@@ -88,9 +89,9 @@
 			);
 			dependencies = (
 			);
-			name = "Madame Y";
+			name = "Tomb of Darius";
 			productName = "Madame Y";
-			productReference = F1254EFC247EFC25000FB68A /* Madame Y.app */;
+			productReference = F1254EFC247EFC25000FB68A /* Tomb of Darius.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -107,7 +108,7 @@
 					};
 				};
 			};
-			buildConfigurationList = F1254EF7247EFC25000FB68A /* Build configuration list for PBXProject "Madame Y" */;
+			buildConfigurationList = F1254EF7247EFC25000FB68A /* Build configuration list for PBXProject "Tomb of Darius" */;
 			compatibilityVersion = "Xcode 9.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -120,7 +121,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				F1254EFB247EFC25000FB68A /* Madame Y */,
+				F1254EFB247EFC25000FB68A /* Tomb of Darius */,
 			);
 		};
 /* End PBXProject section */
@@ -132,6 +133,7 @@
 			files = (
 				F1254F03247EFC26000FB68A /* Assets.xcassets in Resources */,
 				F1254F06247EFC26000FB68A /* MainMenu.xib in Resources */,
+				F1F35D9824D5A81C0050D7EB /* Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -280,12 +282,13 @@
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				GCC_PREPROCESSOR_DEFINITIONS = XCODE_BUILD;
-				INFOPLIST_FILE = "Madame Y/Info.plist";
+				INFOPLIST_FILE = "Tomb of Darius/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "pt.b13.Madame-Y";
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				PRODUCT_BUNDLE_IDENTIFIER = pt.b13.TombOfDarius;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -298,12 +301,13 @@
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				GCC_PREPROCESSOR_DEFINITIONS = XCODE_BUILD;
-				INFOPLIST_FILE = "Madame Y/Info.plist";
+				INFOPLIST_FILE = "Tomb of Darius/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "pt.b13.Madame-Y";
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				PRODUCT_BUNDLE_IDENTIFIER = pt.b13.TombOfDarius;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
@@ -311,7 +315,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		F1254EF7247EFC25000FB68A /* Build configuration list for PBXProject "Madame Y" */ = {
+		F1254EF7247EFC25000FB68A /* Build configuration list for PBXProject "Tomb of Darius" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				F1254F0B247EFC26000FB68A /* Debug */,
@@ -320,7 +324,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		F1254F0D247EFC26000FB68A /* Build configuration list for PBXNativeTarget "Madame Y" */ = {
+		F1254F0D247EFC26000FB68A /* Build configuration list for PBXNativeTarget "Tomb of Darius" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				F1254F0E247EFC26000FB68A /* Debug */,
