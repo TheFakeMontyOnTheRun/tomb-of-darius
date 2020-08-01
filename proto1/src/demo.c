@@ -73,6 +73,7 @@ int8_t min(int8_t x1, int8_t x2) {
     return x1 < x2 ? x1 : x2;
 }
 
+int blink = 0;
 
 void renderScene() {
    uint8_t x, y;
@@ -81,6 +82,12 @@ void renderScene() {
         for (x = 0; x < 32; ++x ) {
             fill( x * 4, y * 4, 4, 4, map[y][x]);
         }
+   }
+
+   blink++;
+
+   if (blink % 1 == 0) {
+       fill(cameraX * 4, cameraZ * 4, 4, 4, 1);
    }
 }
 
