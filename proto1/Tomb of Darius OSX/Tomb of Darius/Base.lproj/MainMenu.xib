@@ -696,7 +696,7 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <customView wantsLayer="YES" id="Wpg-fF-nRa" customClass="GameView">
-                        <rect key="frame" x="0.0" y="-40" width="160" height="200"/>
+                        <rect key="frame" x="0.0" y="0.0" width="160" height="160"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     </customView>
                 </subviews>

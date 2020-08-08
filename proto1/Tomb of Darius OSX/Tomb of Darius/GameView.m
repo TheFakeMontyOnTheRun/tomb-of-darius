@@ -110,14 +110,14 @@ void initWindow(id view) {
             mBufferedCommand = 'w';
             break;
         case 125:
-            mBufferedCommand = 's';
+            mBufferedCommand = 'z';
             break;
         case 123:
             mBufferedCommand = 'a';
             break;
             
         case 124:
-            mBufferedCommand = 'd';
+            mBufferedCommand = 's';
             break;
 
     }

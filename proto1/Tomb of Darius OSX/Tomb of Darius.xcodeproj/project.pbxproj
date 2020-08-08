@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F123073924DF575100636150 /* maps.c in Sources */ = {isa = PBXBuildFile; fileRef = F123073824DF575100636150 /* maps.c */; };
 		F1254F01247EFC25000FB68A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = F1254F00247EFC25000FB68A /* AppDelegate.m */; };
 		F1254F03247EFC26000FB68A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F1254F02247EFC26000FB68A /* Assets.xcassets */; };
 		F1254F06247EFC26000FB68A /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = F1254F04247EFC26000FB68A /* MainMenu.xib */; };
@@ -17,6 +18,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		F123073824DF575100636150 /* maps.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = maps.c; path = ../../src/maps.c; sourceTree = "<group>"; };
 		F1254EFC247EFC25000FB68A /* Tomb of Darius.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Tomb of Darius.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F1254EFF247EFC25000FB68A /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		F1254F00247EFC25000FB68A /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -64,6 +66,7 @@
 				F1254F00247EFC25000FB68A /* AppDelegate.m */,
 				F1254F02247EFC26000FB68A /* Assets.xcassets */,
 				F1254F04247EFC26000FB68A /* MainMenu.xib */,
+				F123073824DF575100636150 /* maps.c */,
 				F1254F08247EFC26000FB68A /* main.m */,
 				F1254F15247F0E03000FB68A /* demo.c */,
 				F1F35D9724D5A81C0050D7EB /* Info.plist */,
@@ -144,6 +147,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F123073924DF575100636150 /* maps.c in Sources */,
 				F1254F16247F0E04000FB68A /* demo.c in Sources */,
 				F1254F14247EFDCC000FB68A /* GameView.m in Sources */,
 				F1254F09247EFC26000FB68A /* main.m in Sources */,
