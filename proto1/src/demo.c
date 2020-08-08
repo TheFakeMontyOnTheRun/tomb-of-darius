@@ -3,6 +3,8 @@
 #include <stdlib.h>
 #include <string.h>
 
+#include "maps.h"
+
 #ifdef CPC_PLATFORM
 #include <cpctelera.h>
 #endif
@@ -26,44 +28,60 @@ void graphicsFlush();
 int8_t cameraX = 33;
 int8_t cameraZ = 22;
 uint8_t running = 1;
+uint8_t room = 0;
+enum ECellType playerState = kHero;
 
 void fill(uint8_t x0, uint8_t y0, uint8_t dx, uint8_t dy, uint8_t colour);
 
 
-const int8_t map[32][32] = {
-        {0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-        {0, 0, 0, 0, 1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-        {0, 0, 0, 0, 1, 2, 8, 7, 7, 7, 7, 7, 8, 2, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-        {0, 0, 0, 0, 1, 2, 2, 7, 0, 0, 0, 7, 2, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-        {0, 0, 0, 0, 1, 1, 2, 7, 7, 7, 7, 7, 9, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0},
-        {0, 0, 0, 0, 0, 1, 2, 7, 7, 8, 8, 2, 2, 2, 1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 1, 1, 1, 1, 0, 0, 0},
-        {0, 0, 0, 0, 0, 1, 2, 7, 7, 2, 2, 1, 1, 1, 1, 2, 7, 7, 7, 7, 7, 7, 7, 7, 2, 2, 2, 2, 1, 0, 0, 0},
-        {1, 1, 1, 1, 1, 1, 2, 7, 7, 2, 2, 2, 2, 2, 1, 1, 1, 1, 1, 1, 1, 8, 3, 3, 3, 7, 8, 2, 1, 0, 0, 0},
-        {1, 2, 2, 2, 2, 2, 2, 7, 7, 2, 9, 2, 8, 2, 2, 2, 2, 2, 2, 1, 1, 2, 7, 7, 7, 7, 2, 2, 1, 0, 0, 0},
-        {1, 2, 8, 7, 7, 5, 3, 6, 6, 3, 4, 7, 7, 7, 7, 7, 7, 5, 8, 1, 1, 2, 7, 7, 7, 7, 2, 1, 1, 0, 0, 0},
-        {1, 2, 2, 7, 7, 7, 7, 7, 7, 7, 7, 7, 0, 0, 0, 0, 7, 7, 2, 1, 1, 2, 7, 7, 6, 7, 2, 1, 1, 0, 0, 0},
-        {1, 2, 9, 7, 7, 7, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 7, 2, 1, 1, 2, 7, 7, 7, 7, 2, 2, 1, 1, 1, 0},
-        {1, 2, 2, 8, 6, 7, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 7, 2, 1, 1, 2, 7, 7, 0, 7, 9, 2, 2, 2, 1, 0},
-        {1, 1, 2, 3, 6, 7, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 7, 2, 1, 1, 9, 7, 7, 0, 7, 7, 7, 8, 2, 1, 0},
-        {0, 1, 2, 3, 6, 7, 0, 0, 0, 0, 7, 7, 7, 0, 0, 0, 0, 7, 2, 1, 1, 7, 7, 7, 0, 0, 0, 7, 2, 2, 1, 0},
-        {0, 1, 2, 3, 6, 7, 0, 0, 0, 0, 7, 3, 7, 0, 0, 0, 0, 7, 2, 1, 1, 0, 0, 7, 0, 0, 0, 7, 2, 1, 1, 0},
-        {0, 1, 2, 2, 6, 7, 0, 0, 0, 0, 7, 7, 7, 0, 0, 0, 0, 7, 2, 1, 7, 7, 7, 7, 0, 0, 0, 7, 2, 2, 1, 0},
-        {0, 1, 1, 2, 7, 7, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 7, 2, 1, 2, 2, 8, 7, 0, 7, 7, 7, 9, 2, 1, 0},
-        {0, 0, 1, 2, 7, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 7, 2, 1, 2, 2, 2, 7, 0, 7, 8, 2, 2, 2, 1, 0},
-        {0, 0, 1, 2, 7, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 7, 2, 1, 2, 2, 2, 7, 0, 7, 2, 2, 1, 1, 1, 0},
-        {0, 0, 1, 2, 7, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 7, 2, 1, 2, 2, 2, 7, 0, 7, 2, 2, 1, 0, 0, 0},
-        {0, 0, 1, 2, 7, 0, 0, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 9, 1, 2, 2, 9, 7, 7, 7, 9, 2, 1, 0, 0, 0},
-        {0, 0, 1, 2, 7, 0, 0, 7, 8, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 1, 2, 2, 7, 7, 7, 8, 2, 2, 1, 0, 0, 0},
-        {0, 0, 1, 2, 7, 0, 0, 7, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 7, 0, 7, 2, 2, 1, 1, 0, 0, 0},
-        {0, 1, 1, 2, 7, 0, 0, 7, 2, 2, 2, 2, 9, 7, 0, 0, 7, 7, 3, 1, 2, 9, 7, 0, 7, 2, 1, 1, 0, 0, 0, 0},
-        {0, 1, 2, 2, 7, 0, 0, 7, 2, 7, 7, 7, 7, 7, 0, 0, 0, 7, 7, 7, 7, 7, 7, 0, 7, 2, 2, 1, 0, 0, 0, 0},
-        {0, 1, 2, 9, 7, 7, 7, 7, 2, 7, 7, 7, 7, 7, 0, 0, 0, 7, 7, 7, 7, 7, 7, 7, 7, 9, 2, 1, 0, 0, 0, 0},
-        {0, 1, 2, 2, 2, 2, 2, 2, 9, 2, 2, 2, 8, 7, 0, 0, 0, 7, 8, 2, 2, 2, 2, 2, 2, 2, 2, 1, 0, 0, 0, 0},
-        {0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 7, 0, 0, 7, 7, 2, 2, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0},
-        {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 2, 7, 7, 7, 7, 8, 2, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-        {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 2, 2, 2, 2, 2, 2, 2, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-        {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}
-};
+enum ECellType applyState(enum ECellType otherState) {
+    switch (otherState) {
+        case kKey1:
+        case kKey2:
+        case kKey3:
+        case kKey4:
+        case kPrize:
+            playerState = otherState;
+            return kNothing;
+        case kEnemy:
+            playerState = kGameOver;
+            puts("GAME OVER!");
+            return otherState;
+        case kAltar:
+            if (playerState == kPrize) {
+                puts("VICTORY!");
+                playerState = kVictory;
+            }
+
+        case kWall:
+        case kNothing:
+        case kHero:
+        default:
+            return otherState;
+    }
+}
+
+
+int block(enum ECellType otherState) {
+    switch (otherState) {
+
+
+
+        case kWall:
+            return 1;
+        case kAltar:
+        case kKey1:
+        case kKey2:
+        case kKey3:
+        case kKey4:
+        case kPrize:
+        case kEnemy:
+        case kNothing:
+        case kHero:
+        default:
+            return 0;
+    }
+}
 
 int8_t max(int8_t x1, int8_t x2) {
     return x1 > x2 ? x1 : x2;
@@ -80,15 +98,13 @@ void renderScene() {
 
    for ( y = 0; y < 32; ++y ) {
         for (x = 0; x < 32; ++x ) {
-            fill( x * 4, y * 4, 4, 4, map[y][x]);
+            fill( x * 5, y * 5, 5, 5, map[room][y][x]);
         }
    }
 
    blink++;
 
-   if (blink % 1 == 0) {
-       fill(cameraX * 4, cameraZ * 4, 4, 4, 1);
-   }
+   fill(cameraX * 5, cameraZ * 5, 5, 5, playerState);
 }
 
 #ifdef CPCTELERA_ALL_H
@@ -125,12 +141,12 @@ void tickRenderer() {
         case 'a':
             cameraX--;
             break;
-        case 'd':
+        case 's':
             cameraX++;
             break;
 
 
-        case 's':
+        case 'z':
             cameraZ++;
             break;
         case 'w':
@@ -145,21 +161,39 @@ void tickRenderer() {
 #endif
     }
 
-    if (cameraZ >= 32) {
-        cameraZ = 31;
-    }
+    map[room][cameraZ][cameraX] = applyState(map[room][cameraZ][cameraX]);
 
-    if (cameraX >= 32) {
-        cameraX = 31;
-    }
+        if (block(map[room][cameraZ][cameraX])){
+            cameraX = prevX;
+            cameraZ = prevZ;
+        }
 
-    if (cameraZ < 0) {
-        cameraZ = 0;
-    }
 
-    if (cameraX < 0) {
-        cameraX = 0;
-    }
+
+
+        if (cameraZ >= 32) {
+            cameraZ = 0;
+            room += 8;
+        }
+
+        if (cameraX >= 32) {
+            cameraX = 0;
+            room++;
+        }
+
+        if (cameraZ < 0) {
+            cameraZ = 31;
+            room -= 8;
+        }
+
+        if (cameraX < 0) {
+            cameraX = 31;
+            --room;
+        }
+
+
+
+
 }
 
 
@@ -176,7 +210,7 @@ int main(int argc, char **argv) {
 #endif
     {
         running = 1;
-        cameraX = 5;
+        cameraX = 15;
         cameraZ = 15;
         init();
 
