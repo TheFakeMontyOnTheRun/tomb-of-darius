@@ -13,7 +13,7 @@ set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -DSDLSW -std=c90 -W -ansi -g -pedantic -Wall
 
 find_package(SDL2 REQUIRED)
 
-add_executable(tomb_of_darius src/demo.c src/sdl2.c)
+add_executable(tomb_of_darius src/demo.c src/sdl2.c src/maps.c src/maps.h)
 
 include(FindPkgConfig)
 

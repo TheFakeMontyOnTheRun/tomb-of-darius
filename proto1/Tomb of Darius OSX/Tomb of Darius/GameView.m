@@ -17,11 +17,11 @@
 
 uint8_t mBufferedCommand;
 uint32_t palette[16];
-uint8_t framebuffer[160 * 200];
+uint8_t framebuffer[160 * 160];
 
 void tickRenderer();
 void demoMain();
-int32_t stretchedBuffer[ 160 * 200 ];
+int32_t stretchedBuffer[ 160 * 160 ];
 CGColorSpaceRef rgb;
 CGDataProviderRef provider;
 CGImageRef ref;
@@ -44,7 +44,7 @@ void initWindow(id view) {
     
            
            mBufferedCommand = '.';
-           memset(framebuffer, 5, 160 * 200);
+           memset(framebuffer, 5, 160 * 160);
 
            palette[0] = 0xFF000099;
            palette[1] = 0xFFFFFFBF;
@@ -146,7 +146,7 @@ void fill( uint8_t x, uint8_t y, uint8_t dx, uint8_t dy, uint8_t colour ) {
 
     tickRenderer();
     
-        for ( int y = 0; y < 200; ++y ) {
+        for ( int y = 0; y < 160; ++y ) {
             for ( int x = 0; x < 160; ++x ) {
                 
                 uint8_t index = framebuffer[ (160 * ( y )) + (x)];
@@ -183,9 +183,9 @@ void fill( uint8_t x, uint8_t y, uint8_t dx, uint8_t dy, uint8_t colour ) {
     
     CGContextSaveGState(context);
     
-    provider = CGDataProviderCreateWithData( NULL, &stretchedBuffer[0], 4 * 160 * 200, NULL );
-    ref = CGImageCreate( 160, 200, 8, 32, 4 * 160, rgb, kCGBitmapByteOrder32Host, provider, NULL, 0, kCGRenderingIntentDefault );
-    CGContextDrawImage(context, CGRectMake(0, 0, 160, 200), ref);
+    provider = CGDataProviderCreateWithData( NULL, &stretchedBuffer[0], 4 * 160 * 160, NULL );
+    ref = CGImageCreate( 160, 160, 8, 32, 4 * 160, rgb, kCGBitmapByteOrder32Host, provider, NULL, 0, kCGRenderingIntentDefault );
+    CGContextDrawImage(context, CGRectMake(0, 0, 160, 160), ref);
     CGImageRelease(ref);
     CGDataProviderRelease(provider);
 
@@ -297,7 +297,7 @@ void shutdownGraphics() {
 
 
 void clearGraphics() {
-    memset(framebuffer, 0, 160 * 200);
+    memset(framebuffer, 0, 160 * 160);
 }
 
 

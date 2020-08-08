@@ -13,7 +13,7 @@ SDL_Renderer *renderer;
 
 uint8_t mBufferedCommand;
 uint32_t palette[16];
-uint8_t framebuffer[160 * 200];
+uint8_t framebuffer[160 * 160];
 
 void graphicsFlush();
 
@@ -133,7 +133,7 @@ void fill(uint8_t x0, uint8_t y0, uint8_t dx, uint8_t dy, uint8_t colour) {
 
 
 void clearGraphics() {
-    memset(framebuffer, 0, 160 * 200);
+    memset(framebuffer, 0, 160 * 160);
 }
 
 void writeStr(uint8_t nColumn, uint8_t nLine, char *str, uint8_t fg, uint8_t bg) {
@@ -156,18 +156,12 @@ uint8_t getKey() {
 
             switch (event.key.keysym.sym) {
                 case SDLK_RETURN:
-                case SDLK_z:
-                    mBufferedCommand = 'a';
-                    break;
 
                 case SDLK_ESCAPE:
                 case SDLK_q:
-                    mBufferedCommand = 'l';
+                    mBufferedCommand = 'q';
                     break;
 
-                case SDLK_SPACE:
-                case SDLK_s:
-                    break;
                 case SDLK_d:
                     break;
                 case SDLK_v:
@@ -178,8 +172,8 @@ uint8_t getKey() {
                     break;
                 case SDLK_k:
                     break;
-                case SDLK_x:
-                    mBufferedCommand = 'd';
+                case SDLK_SPACE:
+                    mBufferedCommand = 'x';
                     break;
                 case SDLK_c:
                     break;
@@ -187,16 +181,16 @@ uint8_t getKey() {
                     break;
 
                 case SDLK_LEFT:
-                    mBufferedCommand = 'q';
+                    mBufferedCommand = 'a';
                     break;
                 case SDLK_RIGHT:
-                    mBufferedCommand = 'e';
+                    mBufferedCommand = 's';
                     break;
                 case SDLK_UP:
                     mBufferedCommand = 'w';
                     break;
                 case SDLK_DOWN:
-                    mBufferedCommand = 's';
+                    mBufferedCommand = 'z';
                     break;
 
                 default:
@@ -213,10 +207,10 @@ void init() {
     mBufferedCommand = '.';
     SDL_Init(SDL_INIT_EVERYTHING);
     SDL_SetHint(SDL_HINT_RENDER_DRIVER, "opengl");
-    memset(framebuffer, 5, 160 * 200);
+    memset(framebuffer, 5, 160 * 160);
     window =
             SDL_CreateWindow("The Mistral Report", SDL_WINDOWPOS_CENTERED,
-                             SDL_WINDOWPOS_CENTERED, 640, 480, SDL_WINDOW_SHOWN);
+                             SDL_WINDOWPOS_CENTERED, 640, 640, SDL_WINDOW_SHOWN);
 
     renderer = SDL_CreateRenderer(window, -1, 0);
 
@@ -250,13 +244,13 @@ void flipRenderer() {
     uint32_t pixel;
     int x, y;
 
-    for (y = 0; y < 200; ++y) {
+    for (y = 0; y < 160; ++y) {
         for (x = 0; x < 160; ++x) {
 
             rect.x = 4 * x;
-            rect.y = (24 * y) / 10;
+            rect.y = 4 * y;
             rect.w = 4;
-            rect.h = 3;
+            rect.h = 4;
             int index = framebuffer[(160 * y) + x];
 
             if (index < 0 || index >= 16) {

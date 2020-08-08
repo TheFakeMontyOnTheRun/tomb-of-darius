@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
     <dependencies>
+        <deployment identifier="macosx"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14490.70"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -684,18 +685,18 @@
         <window title="Tomb of Darius" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" animationBehavior="default" id="QvC-M9-y7g">
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
-            <rect key="contentRect" x="335" y="390" width="160" height="200"/>
+            <rect key="contentRect" x="335" y="390" width="160" height="160"/>
             <rect key="screenRect" x="0.0" y="0.0" width="1440" height="900"/>
-            <value key="minSize" type="size" width="160" height="200"/>
-            <value key="maxSize" type="size" width="160" height="200"/>
-            <value key="minFullScreenContentSize" type="size" width="160" height="200"/>
-            <value key="maxFullScreenContentSize" type="size" width="160" height="200"/>
+            <value key="minSize" type="size" width="160" height="160"/>
+            <value key="maxSize" type="size" width="160" height="160"/>
+            <value key="minFullScreenContentSize" type="size" width="160" height="160"/>
+            <value key="maxFullScreenContentSize" type="size" width="160" height="160"/>
             <view key="contentView" id="EiT-Mj-1SZ">
-                <rect key="frame" x="0.0" y="0.0" width="160" height="200"/>
+                <rect key="frame" x="0.0" y="0.0" width="160" height="160"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <customView wantsLayer="YES" id="Wpg-fF-nRa" customClass="GameView">
-                        <rect key="frame" x="0.0" y="0.0" width="160" height="200"/>
+                        <rect key="frame" x="0.0" y="-40" width="160" height="200"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     </customView>
                 </subviews>
